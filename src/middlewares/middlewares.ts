@@ -5,7 +5,7 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import passport from "passport";
 // Config
-import { dbURI } from "../config/db.config";
+import { dbURI } from "../config/mongoDb.config";
 import initializePassport from "../config/passport.config";
 import config from "../config/env.config";
 

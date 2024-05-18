@@ -3,8 +3,9 @@ import express, { Express } from "express";
 import handlebars from "express-handlebars";
 import { Server } from "socket.io";
 import socketMessages from "./websockets/socketMessages";
-// Utils
-import connectDB from "./config/db.config";
+
+import MongoDB from "./config/mongoDb.config";
+// import connectDB from "./config/mongoDb.config";
 import { rootPath } from "./utils/paths";
 
 import middlewares from "./middlewares/middlewares"; // Middlewares
@@ -34,4 +35,5 @@ app.use(routes); /** ROUTES */
 /** WEBSOCKETS */
 socketMessages(io);
 
-connectDB(); // MongoDB
+/** MongoDB */
+MongoDB.getInstance();
