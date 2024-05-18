@@ -115,6 +115,10 @@ Enlace al repositorio de **GitHub** con el proyecto completo, sin la carpeta de 
 
 > - **commander** es una biblioteca para **Node.js** que facilita la creación de interfaces de línea de comandos (**CLI**).
 
+- `npm i cors`
+
+> - **cors** se utiliza para habilitar **Cross-Origin Resource Sharing** (**CORS**) en tu servidor. El **Cross-Origin Resource Sharing** (**CORS**) es un mecanismo de seguridad que permite a los servidores indicar a los navegadores qué orígenes (dominios, esquemas o puertos) están permitidos acceder a los recursos del servidor. Este mecanismo es fundamental para habilitar el intercambio de recursos entre diferentes dominios en aplicaciones web, manteniendo al mismo tiempo una política de seguridad robusta.
+
 ## devDependencies
 
 - `npm i nodemon -D`

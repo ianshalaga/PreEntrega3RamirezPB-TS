@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import passport from "passport";
+import cors from "cors";
 // Config
 import { dbURI } from "../config/mongoDb.config";
 import initializePassport from "../config/passport.config";
@@ -35,5 +36,7 @@ middlewares.use(
 initializePassport();
 middlewares.use(passport.initialize());
 middlewares.use(passport.session());
+
+middlewares.use(cors()); // Cors
 
 export default middlewares;

@@ -9,10 +9,10 @@ export const dbURI = `mongodb+srv://${dbUsername}:${dbPassword}@ecommerce.rvp8u3
 
 export default class MongoDB {
   constructor() {
-    this.connect();
+    this.connectToDb();
   }
 
-  async connect() {
+  async connectToDb() {
     try {
       await mongoose.connect(dbURI);
       console.log(
