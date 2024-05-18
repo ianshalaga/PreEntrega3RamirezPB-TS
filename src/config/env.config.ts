@@ -1,4 +1,9 @@
 import dotenv from "dotenv";
+import { Command } from "commander";
+
+const program = new Command();
+program.option("--dao <dao>", "Data Access Object Selector", "mongodb").parse();
+const dao = program.opts().dao;
 
 dotenv.config({
   path: "./.env.development",

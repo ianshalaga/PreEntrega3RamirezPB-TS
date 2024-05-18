@@ -111,6 +111,10 @@ Enlace al repositorio de **GitHub** con el proyecto completo, sin la carpeta de 
 
 > - **passport-github2** es una estrategia de autenticación para **passport**, diseñada específicamente para la autenticación de usuarios utilizando **GitHub** como proveedor de autenticación.
 
+- `npm i commander`
+
+> - **commander** es una biblioteca para **Node.js** que facilita la creación de interfaces de línea de comandos (**CLI**).
+
 ## devDependencies
 
 - `npm i nodemon -D`

@@ -1,12 +1,15 @@
+/** External */
 import express, { Router } from "express";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import { dbURI } from "../config/db.config";
-import { rootPath } from "../utils/paths";
 import passport from "passport";
+// Config
+import { dbURI } from "../config/db.config";
 import initializePassport from "../config/passport.config";
 import config from "../config/env.config";
+
+import { rootPath } from "../utils/paths";
 
 const middlewares = Router();
 
