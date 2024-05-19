@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { failureStatus, successStatus } from "../utils/statuses";
 import { productsRoute } from "../utils/routes";
+import CurrentUserDTO from "../dao/dto/currentUser.dto";
 
 class SessionController {
   constructor() {}
@@ -20,13 +21,7 @@ class SessionController {
   async login(req: Request, res: Response) {
     if (!req.user)
       return res.status(400).json(failureStatus("Error de credenciales."));
-    req.session.user = {
-      name: `${req.user.firstName} ${req.user.lastName}`,
-      email: req.user.email,
-      age: req.user.age,
-      rol: req.user.rol,
-      cart: req.user.cart,
-    };
+    req.session.user = new CurrentUserDTO(req.user).currentUser;
     res.status(200).json(successStatus);
   }
 
@@ -51,15 +46,7 @@ class SessionController {
 
   // @@@@
   async githubCallback(req: Request, res: Response) {
-    console.log(req.user);
-    req.session.user = {
-      name: `${req.user.firstName} ${req.user.lastName}`,
-      email: req.user.email,
-      age: req.user.age,
-      rol: req.user.rol,
-      cart: req.user.cart,
-    };
-    console.log(req.session.user);
+    req.session.user = new CurrentUserDTO(req.user).currentUser;
     res.redirect(productsRoute);
   }
 

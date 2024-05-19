@@ -4,9 +4,7 @@ import { createHash, isValidPassword } from "../utils/passwordHashing";
 import DbCart from "../interfaces/DbCart";
 import dbUser from "../interfaces/dbUser";
 // Services
-// import cartService from "../dao/mongodb/services/cartDB.service";
-import { cartService } from "../services/services";
-import userService from "../dao/mongodb/services/user.service";
+import { cartService, userService } from "../services/services";
 
 class AuthController {
   constructor() {}
@@ -15,7 +13,7 @@ class AuthController {
   async register(req: Request, username: string, password: string, done) {
     try {
       const { email, firstName, lastName, age, rol } = req.body;
-      const userExist: dbUser = await userService.getUser(email);
+      const userExist: dbUser = await userService.getUserByEmail(email);
       if (userExist) {
         console.log("El usuario ya existe");
         return done(null, false); // User exist. No error.
@@ -40,7 +38,7 @@ class AuthController {
   // @@@@
   async login(username: string, password: string, done) {
     try {
-      const user: dbUser = await userService.getUser(username);
+      const user: dbUser = await userService.getUserByEmail(username);
       if (!user) return done(null, false);
       const valid = isValidPassword(user, password);
       if (!valid) return done(null, false);
@@ -53,7 +51,9 @@ class AuthController {
   // @@@@
   async githubLogin(accessToken, refreshToken, profile, done) {
     try {
-      const user: dbUser = await userService.getUser(profile._json.email);
+      const user: dbUser = await userService.getUserByEmail(
+        profile._json.email
+      );
       if (!user) {
         const newCart: DbCart = await cartService.createCart();
         const newUser = {

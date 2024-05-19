@@ -1,12 +1,13 @@
 import config from "../config/env.config";
 import MongoDB from "../config/mongoDb.config";
+/** DAO */
 import CartMongodbDAO from "./mongodb/cart.mongodb.dao";
 import ProductMongodbDAO from "./mongodb/product.mongodb.dao";
+import UserMongodbDAO from "./mongodb/user.mongodb.dao";
 
 export let carts: CartMongodbDAO;
 export let products: ProductMongodbDAO;
-export let users: string;
-export let messages: string;
+export let users: UserMongodbDAO;
 
 switch (config.dao) {
   case "mongodb":
@@ -17,8 +18,12 @@ switch (config.dao) {
     const { default: productsMongodb } = await import(
       "./mongodb/product.mongodb.dao"
     );
+    const { default: usersMongodb } = await import(
+      "./mongodb/user.mongodb.dao"
+    );
     carts = new cartsMongodb();
     products = new productsMongodb();
+    users = new usersMongodb();
     break;
   case "files":
     // No implementation

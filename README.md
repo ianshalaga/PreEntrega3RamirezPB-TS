@@ -8,14 +8,14 @@ Profesionalizar el servidor. Aplicar una arquitectura profesional para nuestro s
 
 - ARQUITECTURA
 
-  - Imprementar un modelo de capas.
+  - [x] Imprementar un modelo de capas: variables de entorno, **routers**, **controllers**, **services** (**repository**), **DAO** (**Factory**), **DTO**.
 
 - PERSISTENCIA
 
-  - Modificar nuestra capa de persistencia para aplicar los conceptos de **Factory** (opcional), **DAO** y **DTO**.
-  - El **DAO** seleccionado (por un parámetro en línea de comandos como lo hicimos anteriormente) será devuelto por una **Factory** para que la capa de negocio opere con él. **Factory** puede ser opcional.
-  - Implementar el patrón **Repository** para trabajar con el **DAO** en la lógica de negocio.
-  - Modificar la ruta **/current** para evitar enviar información sensible, enviar un **DTO** del usuario sólo con la información necesaria.
+  - [x] Modificar nuestra capa de persistencia para aplicar los conceptos de **Factory** (opcional), **DAO** y **DTO**.
+  - [x] El **DAO** seleccionado (por un parámetro en línea de comandos como lo hicimos anteriormente) será devuelto por una **Factory** para que la capa de negocio (**services** / **repository**) opere con él. **Factory** puede ser opcional.
+  - [x] Implementar el patrón **Repository** para trabajar con el **DAO** en la lógica de negocio (**services**).
+  - [x] Modificar la ruta **/current** para evitar enviar información sensible, enviar un **DTO** del usuario sólo con la información necesaria.
   - Crear un modelo **ticket** el cual contará con todas las formalizaciones de la compra. Éste contará con los campos:
 
     - **id**: autogenerado por **MongoDB**.
