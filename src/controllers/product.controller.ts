@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import productDbService from "../dao/mongodb/services/productDB.service";
+import { productService } from "../services/services";
 import { successStatus, failureStatus } from "../utils/statuses";
 // Interfaces
 import QueryParams from "../interfaces/QueryParams";
@@ -27,7 +27,7 @@ class ProductController {
       if (page) {
         pageParsed = parseInt(page);
       }
-      const products: GetProduct = await productDbService.getProducts(
+      const products: GetProduct = await productService.getAllProducts(
         limitParsed,
         pageParsed,
         sort,
@@ -50,24 +50,24 @@ class ProductController {
   }
 
   // @@@@
-  async getProductById(req: Request, res: Response) {
+  async createProduct(req: Request, res: Response) {
     try {
-      const pid: string = req.params.pid;
-      const product = await productDbService.getProductById(pid);
-      res.status(200).json(product);
+      const product: Product = req.body;
+      await productService.createProduct(product);
+      res.status(200).json(successStatus);
     } catch (error) {
-      res.status(404).json(failureStatus(error.message));
+      res.status(500).json(failureStatus(error.message));
     }
   }
 
   // @@@@
-  async addProduct(req: Request, res: Response) {
+  async getProductById(req: Request, res: Response) {
     try {
-      const product: Product = req.body;
-      await productDbService.addProduct(product);
-      res.status(200).json(successStatus);
+      const pid: string = req.params.pid;
+      const product = await productService.getProductById(pid);
+      res.status(200).json(product);
     } catch (error) {
-      res.status(500).json(failureStatus(error.message));
+      res.status(404).json(failureStatus(error.message));
     }
   }
 
@@ -76,7 +76,7 @@ class ProductController {
     try {
       const pid: string = req.params.pid;
       const updateProperties: UpdateProduct = validateUpdateProduct(req.body);
-      await productDbService.updateProduct(pid, updateProperties);
+      await productService.updateProduct(pid, updateProperties);
       res.status(200).json(successStatus);
     } catch (error) {
       res.json(failureStatus(error.message));
@@ -87,7 +87,7 @@ class ProductController {
   async deleteProduct(req: Request, res: Response) {
     try {
       const pid: string = req.params.pid;
-      await productDbService.deleteProduct(pid);
+      await productService.deleteProduct(pid);
       res.status(200).json(successStatus);
     } catch (error) {
       res.json(failureStatus(error.message));

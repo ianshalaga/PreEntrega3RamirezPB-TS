@@ -1,10 +1,9 @@
 import config from "../config/env.config";
 import { Request, Response } from "express";
-import { productRoute, productsRoute } from "../utils/routes";
+import { productsRoute } from "../utils/routes";
 import validateQueryParams from "../validators/queryParams";
-// Services
-import productDbService from "../dao/mongodb/services/productDB.service";
-import { cartService } from "../services/services";
+/** Services */
+import { cartService, productService } from "../services/services";
 // Interfaces
 import GetProduct from "../interfaces/GetProduct";
 import QueryParams from "../interfaces/QueryParams";
@@ -58,7 +57,7 @@ class ViewController {
       if (page) {
         pageParsed = parseInt(page);
       }
-      const products: GetProduct = await productDbService.getProducts(
+      const products: GetProduct = await productService.getAllProducts(
         limitParsed,
         pageParsed,
         sort,
@@ -114,7 +113,7 @@ class ViewController {
   async product(req: Request, res: Response) {
     try {
       const pid: string = req.params.pid;
-      const product: DbProduct = await productDbService.getProductById(pid);
+      const product: DbProduct = await productService.getProductById(pid);
       res.render("product", {
         title: "Product",
         style: "app.css",

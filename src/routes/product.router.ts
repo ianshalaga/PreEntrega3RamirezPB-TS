@@ -8,7 +8,7 @@ productsRouter.get("/", productController.getAllProducts);
 productsRouter.get("/:pid", productController.getProductById);
 
 /** POST ENDPOINT */
-productsRouter.post("/", productController.addProduct);
+productsRouter.post("/", productController.createProduct);
 
 /** PUT ENDPOINT */
 productsRouter.put("/:pid", productController.updateProduct);

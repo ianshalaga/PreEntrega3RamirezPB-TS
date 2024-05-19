@@ -1,10 +1,10 @@
-import dao from "../types/dao";
 import ProductCart from "../interfaces/ProductCart";
+import CartMongodbDAO from "../dao/mongodb/cart.mongodb.dao";
 
 export default class CartService {
-  dao: dao;
+  dao: CartMongodbDAO;
 
-  constructor(dao: dao) {
+  constructor(dao: CartMongodbDAO) {
     this.dao = dao;
   }
 
