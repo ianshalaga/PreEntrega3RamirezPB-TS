@@ -3,8 +3,8 @@ import { Request, Response } from "express";
 import { productRoute, productsRoute } from "../utils/routes";
 import validateQueryParams from "../validators/queryParams";
 // Services
-import productDbService from "../dao/services/productDB.service";
-import cartDbService from "../dao/services/cartDB.service";
+import productDbService from "../dao/mongodb/services/productDB.service";
+import { cartService } from "../services/services";
 // Interfaces
 import GetProduct from "../interfaces/GetProduct";
 import QueryParams from "../interfaces/QueryParams";
@@ -95,7 +95,7 @@ class ViewController {
   async cart(req: Request, res: Response) {
     try {
       const cid: string = req.params.cid;
-      const cart: DbCart = await cartDbService.getCartById(cid);
+      const cart: DbCart = await cartService.getCartById(cid);
       res.render("cartDetail", {
         title: "Cart detail",
         style: "app.css",

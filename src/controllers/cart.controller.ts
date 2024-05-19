@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import cartDbService from "../dao/services/cartDB.service";
+import { cartService } from "../services/services";
 import { successStatus, failureStatus } from "../utils/statuses";
 // Interfaces
 import DbCart from "../interfaces/DbCart";
@@ -14,7 +14,7 @@ class CartController {
   // @@@@
   async getAllCarts(req: Request, res: Response) {
     try {
-      const cart: DbCart[] = await cartDbService.getCarts();
+      const cart: DbCart[] = await cartService.getAllCarts();
       res.status(200).json(cart);
     } catch (error) {
       res.json(failureStatus(error.message));
@@ -25,7 +25,7 @@ class CartController {
   async getCartById(req: Request, res: Response) {
     try {
       const cid: string = req.params.cid;
-      const cart: DbCart = await cartDbService.getCartById(cid);
+      const cart: DbCart = await cartService.getCartById(cid);
       res.status(200).json(cart);
     } catch (error) {
       res.json(failureStatus(error.message));
@@ -35,7 +35,7 @@ class CartController {
   // @@@@
   async createCart(req: Request, res: Response) {
     try {
-      await cartDbService.createCart();
+      await cartService.createCart();
       res.status(200).json(successStatus);
     } catch (error) {
       res.json(failureStatus(error.message));
@@ -43,11 +43,11 @@ class CartController {
   }
 
   // @@@@
-  async addProductToCart(req: Request, res: Response) {
+  async addProductCart(req: Request, res: Response) {
     try {
       const cid: string = req.params.cid;
       const pid: string = req.params.pid;
-      await cartDbService.addProductToCart(cid, pid);
+      await cartService.addProductCart(cid, pid);
       res.status(200).json(successStatus);
     } catch (error) {
       res.json(failureStatus(error.message));
@@ -59,7 +59,7 @@ class CartController {
     try {
       const cid: string = req.params.cid;
       const updateProducts: ProductCart[] = validateProductCart(req.body);
-      await cartDbService.updateCart(cid, updateProducts);
+      await cartService.updateCart(cid, updateProducts);
       res.status(200).json(successStatus);
     } catch (error) {
       res.json(failureStatus(error.message));
@@ -67,12 +67,12 @@ class CartController {
   }
 
   // @@@@
-  async updateProductQuantity(req: Request, res: Response) {
+  async updateProductQuantityCart(req: Request, res: Response) {
     try {
       const cid: string = req.params.cid;
       const pid: string = req.params.pid;
       const quantity: number = validateNumber(req.body);
-      await cartDbService.updateProductQuantity(cid, pid, quantity);
+      await cartService.updateProductQuantityCart(cid, pid, quantity);
       res.status(200).json(successStatus);
     } catch (error) {
       res.json(failureStatus(error.message));
@@ -80,11 +80,11 @@ class CartController {
   }
 
   // @@@@
-  async removeProductFromCart(req: Request, res: Response) {
+  async removeProductCart(req: Request, res: Response) {
     try {
       const cid: string = req.params.cid;
       const pid: string = req.params.pid;
-      await cartDbService.removeProductFromCart(cid, pid);
+      await cartService.removeProductCart(cid, pid);
       res.status(200).json(successStatus);
     } catch (error) {
       res.json(failureStatus(error.message));
@@ -95,7 +95,7 @@ class CartController {
   async clearCart(req: Request, res: Response) {
     try {
       const cid: string = req.params.cid;
-      await cartDbService.clearCart(cid);
+      await cartService.clearCart(cid);
       res.status(200).json(successStatus);
     } catch (error) {
       res.json(failureStatus(error.message));

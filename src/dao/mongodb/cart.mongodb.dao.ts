@@ -1,14 +1,16 @@
-import cartsModel from "../models/carts.model";
-// Interfaces
+/** Model */
+import cartsModel from "./models/cart.mongodb.model";
+/** Interfaces */
+import CartDAO from "../../interfaces/CartDAO";
 import DbCart from "../../interfaces/DbCart";
 import Cart from "../../interfaces/Cart";
 import ProductCart from "../../interfaces/ProductCart";
 
-class CartManagerDB {
+class CartMongodbDAO implements CartDAO {
   constructor() {}
 
   // @@@@
-  async getCarts(): Promise<DbCart[]> {
+  async getAll(): Promise<DbCart[]> {
     try {
       const carts = await cartsModel.find();
       let dbCarts: DbCart[] = [];
@@ -22,7 +24,7 @@ class CartManagerDB {
   }
 
   // @@@@
-  async createCart(): Promise<DbCart> {
+  async create(): Promise<DbCart> {
     try {
       const cart: Cart = { products: [] };
       const dbCartDoc = await cartsModel.create(cart);
@@ -34,7 +36,7 @@ class CartManagerDB {
   }
 
   // @@@@
-  async getCartById(id: string): Promise<DbCart> {
+  async getById(id: string): Promise<DbCart> {
     try {
       const cart = await cartsModel.findById(id).populate("products.product");
       const dbCart: DbCart = await cart.toObject();
@@ -45,7 +47,7 @@ class CartManagerDB {
   }
 
   // @@@@
-  async addProductToCart(cid: string, pid: string): Promise<void> {
+  async addProduct(cid: string, pid: string): Promise<void> {
     try {
       const cart = await cartsModel.findById(cid);
       const dbCart: DbCart = await cart.toObject();
@@ -76,7 +78,7 @@ class CartManagerDB {
   }
 
   // @@@@
-  async removeProductFromCart(cid: string, pid: string): Promise<void> {
+  async removeProduct(cid: string, pid: string): Promise<void> {
     try {
       const cart = await cartsModel.findById(cid);
       const dbCart: DbCart = await cart.toObject();
@@ -94,7 +96,7 @@ class CartManagerDB {
   }
 
   // @@@@
-  async updateCart(cid: string, updateProducts: ProductCart[]): Promise<void> {
+  async update(cid: string, updateProducts: ProductCart[]): Promise<void> {
     try {
       const cart = await cartsModel.findById(cid);
       const dbCart: DbCart = await cart.toObject();
@@ -126,7 +128,7 @@ class CartManagerDB {
   }
 
   // @@@@
-  async clearCart(cid: string): Promise<void> {
+  async clear(cid: string): Promise<void> {
     try {
       const cart = await cartsModel.findById(cid);
       const dbCart: DbCart = await cart.toObject();
@@ -138,4 +140,5 @@ class CartManagerDB {
   }
 }
 
-export default new CartManagerDB();
+// export default new CartMongodbDAO();
+export default CartMongodbDAO;

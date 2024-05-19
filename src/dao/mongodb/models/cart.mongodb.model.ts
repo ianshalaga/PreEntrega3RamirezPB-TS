@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { productsCollection } from "./products.model";
+import { productsCollection } from "./product.mongodb.model";
 
 export const cartsCollection = "carts";
 

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import productDbService from "../dao/services/productDB.service";
+import productDbService from "../dao/mongodb/services/productDB.service";
 import { successStatus, failureStatus } from "../utils/statuses";
 // Interfaces
 import QueryParams from "../interfaces/QueryParams";

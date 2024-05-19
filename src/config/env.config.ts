@@ -3,7 +3,7 @@ import { Command } from "commander";
 
 const program = new Command();
 program.option("--dao <dao>", "Data Access Object Selector", "mongodb").parse();
-const dao = program.opts().dao;
+const dao: string = program.opts().dao;
 
 dotenv.config({
   path: "./.env.development",
@@ -26,4 +26,6 @@ export default {
   adminPassword: process.env.ADMIN_PASSWORD,
   // Port
   port: process.env.PORT,
+  // DAO
+  dao: dao,
 };

@@ -4,8 +4,9 @@ import { createHash, isValidPassword } from "../utils/passwordHashing";
 import DbCart from "../interfaces/DbCart";
 import dbUser from "../interfaces/dbUser";
 // Services
-import cartDbService from "../dao/services/cartDB.service";
-import userService from "../dao/services/user.service";
+// import cartService from "../dao/mongodb/services/cartDB.service";
+import { cartService } from "../services/services";
+import userService from "../dao/mongodb/services/user.service";
 
 class AuthController {
   constructor() {}
@@ -19,7 +20,7 @@ class AuthController {
         console.log("El usuario ya existe");
         return done(null, false); // User exist. No error.
       }
-      const newCart: DbCart = await cartDbService.createCart();
+      const newCart: DbCart = await cartService.createCart();
       const newUser = {
         firstName,
         lastName,
@@ -54,7 +55,7 @@ class AuthController {
     try {
       const user: dbUser = await userService.getUser(profile._json.email);
       if (!user) {
-        const newCart: DbCart = await cartDbService.createCart();
+        const newCart: DbCart = await cartService.createCart();
         const newUser = {
           firstName: profile._json.name || "firstName",
           lastName: profile._json.name || "lastName",

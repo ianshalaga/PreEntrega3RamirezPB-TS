@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
-import { cartsCollection } from "./carts.model";
+import { cartsCollection } from "./cart.mongodb.model";
 
 export const usersCollection = "users";
 

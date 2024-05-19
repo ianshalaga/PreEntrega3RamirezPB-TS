@@ -1,10 +1,10 @@
-import { productsModel } from "../models/products.model";
-import query from "../../types/query";
+import { productsModel } from "../models/product.mongodb.model";
+import query from "../../../types/query";
 // Interfaces
-import Product from "../../interfaces/Product";
-import DbProduct from "../../interfaces/DbProduct";
-import UpdateProduct from "../../interfaces/UpdateProduct";
-import GetProduct from "../../interfaces/GetProduct";
+import Product from "../../../interfaces/Product";
+import DbProduct from "../../../interfaces/DbProduct";
+import UpdateProduct from "../../../interfaces/UpdateProduct";
+import GetProduct from "../../../interfaces/GetProduct";
 
 class ProductManagerDB {
   totalProducts: number = 0;

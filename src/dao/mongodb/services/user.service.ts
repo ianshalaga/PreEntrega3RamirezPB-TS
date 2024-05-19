@@ -1,7 +1,7 @@
-import { usersModel } from "../models/users.model";
+import { usersModel } from "../models/user.mongodb.model";
 // Interfaces
-import User from "../../interfaces/User";
-import dbUser from "../../interfaces/dbUser";
+import User from "../../../interfaces/User";
+import dbUser from "../../../interfaces/dbUser";
 
 class UserService {
   constructor() {}

@@ -1,7 +1,7 @@
 import { Server } from "socket.io";
 // Data Access Object (DAO)
-import productManagerDB from "../dao/services/productDB.service";
-import messagesModel from "../dao/models/messages.model";
+import productManagerDB from "../dao/mongodb/services/productDB.service";
+import messagesModel from "../dao/mongodb/models/message.mongodb.model";
 // Interfaces
 import Product from "../interfaces/Product";
 import GetProduct from "../interfaces/GetProduct";

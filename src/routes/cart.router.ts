@@ -12,20 +12,20 @@ cartsRouter.get("/:cid", cartController.getCartById);
 cartsRouter.post("/", cartController.createCart);
 cartsRouter.post(
   "/:cid" + productRoute + "/:pid",
-  cartController.addProductToCart
+  cartController.addProductCart
 );
 
 /** PUT ENPOINTS */
 cartsRouter.put("/:cid", cartController.updateCart);
 cartsRouter.put(
   "/:cid" + productRoute + "/:pid",
-  cartController.updateProductQuantity
+  cartController.updateProductQuantityCart
 );
 
 /** DELETE ENPOINTS */
 cartsRouter.delete(
   "/:cid" + productRoute + "/:pid",
-  cartController.removeProductFromCart
+  cartController.removeProductCart
 );
 cartsRouter.delete("/:cid", cartController.clearCart);
 
