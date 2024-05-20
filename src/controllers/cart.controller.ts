@@ -3,6 +3,7 @@ import {
   cartService,
   productService,
   ticketService,
+  userService,
 } from "../services/services";
 import { successStatus, failureStatus } from "../utils/statuses";
 // Interfaces
@@ -13,6 +14,7 @@ import validateNumber from "../validators/number";
 import validateProductCart from "../validators/productCart";
 import DbProduct from "../interfaces/DbProduct";
 import Ticket from "../interfaces/Ticket";
+import dbUser from "../interfaces/dbUser";
 
 class CartController {
   constructor() {}
@@ -111,25 +113,31 @@ class CartController {
   // @@@@
   async purchase(req: Request, res: Response) {
     try {
-      const user = req.session.user;
+      const cid: string = req.params.cid;
+      const user: dbUser = await userService.getUserByCart(cid);
       let amount: number = 0; // Total price
       const noPurchased: ProductCart[] = [];
       const stockless: string[] = [];
-      const cid: string = req.params.cid;
+      const stockUpdates: Promise<void>[] = [];
       const cart: DbCart = await cartService.getCartById(cid);
-      cart.products.forEach(async (product: ProductCart) => {
-        const dbProduct: DbProduct = await productService.getProductById(
-          product.product
-        );
-        let diff = dbProduct.stock - product.quantity;
-        if (diff >= 0) {
-          await productService.updateProduct(product.product, { stock: diff });
-          amount += product.quantity * dbProduct.price;
-        } else {
-          stockless.push(product.product);
-          noPurchased.push(product);
-        }
+      cart.products.forEach((product: ProductCart) => {
+        const updateStockPromise = productService
+          .getProductById(product.product)
+          .then(async (dbProduct: DbProduct) => {
+            let diff = dbProduct.stock - product.quantity;
+            if (diff >= 0) {
+              await productService.updateProduct(product.product, {
+                stock: diff,
+              });
+              amount += product.quantity * dbProduct.price;
+            } else {
+              stockless.push(product.product);
+              noPurchased.push(product);
+            }
+          });
+        stockUpdates.push(updateStockPromise);
       });
+      await Promise.all(stockUpdates);
       const ticket: Ticket = {
         amount: amount,
         purchaser: user.email,

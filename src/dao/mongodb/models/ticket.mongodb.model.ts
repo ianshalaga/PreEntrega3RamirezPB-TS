@@ -23,11 +23,9 @@ const ticketsSchema = new mongoose.Schema({
 });
 
 /** Middleware */
-ticketsSchema.pre("insertMany", (next, docs) => {
-  for (let doc of docs) {
-    if (!doc.code) {
-      doc.code = generateCode("TICKET");
-    }
+ticketsSchema.pre("save", function (next) {
+  if (!this.code) {
+    this.code = generateCode("TICKET");
   }
   next();
 });

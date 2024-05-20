@@ -4,6 +4,7 @@ import { usersModel } from "./models/user.mongodb.model";
 import UserDAO from "../../interfaces/UserDAO";
 import User from "../../interfaces/User";
 import dbUser from "../../interfaces/dbUser";
+import DbCart from "../../interfaces/DbCart";
 
 class UserMongodbDAO implements UserDAO {
   constructor() {}
@@ -33,6 +34,16 @@ class UserMongodbDAO implements UserDAO {
     try {
       const result: dbUser = (await usersModel.create(newUser)).toObject();
       return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // @@@@
+  async getByCart(cartId: string): Promise<dbUser> {
+    try {
+      const dbUser: dbUser = await usersModel.findOne({ cart: cartId });
+      return dbUser;
     } catch (error) {
       throw error;
     }

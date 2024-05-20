@@ -19,4 +19,8 @@ export default class UserService {
   async createUser(newUser: User) {
     return await this.dao.create(newUser);
   }
+
+  async getUserByCart(cartId: string) {
+    return await this.dao.getByCart(cartId);
+  }
 }

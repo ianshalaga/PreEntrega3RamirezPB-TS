@@ -24,7 +24,7 @@ middlewares.use(
   session({
     store: MongoStore.create({
       mongoUrl: dbURI,
-      ttl: 15,
+      ttl: 3600,
     }),
     secret: config.sessionSecret,
     resave: false,
