@@ -16,7 +16,7 @@ Profesionalizar el servidor. Aplicar una arquitectura profesional para nuestro s
   - [x] El **DAO** seleccionado (por un parámetro en línea de comandos como lo hicimos anteriormente) será devuelto por una **Factory** para que la capa de negocio (**services** / **repository**) opere con él. **Factory** puede ser opcional.
   - [x] Implementar el patrón **Repository** para trabajar con el **DAO** en la lógica de negocio (**services**).
   - [x] Modificar la ruta **/current** para evitar enviar información sensible, enviar un **DTO** del usuario sólo con la información necesaria.
-  - Crear un modelo **ticket** el cual contará con todas las formalizaciones de la compra. Éste contará con los campos:
+  - [x] Crear un modelo **ticket** el cual contará con todas las formalizaciones de la compra. Éste contará con los campos:
 
     - **id**: autogenerado por **MongoDB**.
     - **code**: String debe autogenerarse y ser único.
@@ -26,15 +26,15 @@ Profesionalizar el servidor. Aplicar una arquitectura profesional para nuestro s
 
 - PROCESO DE COMPRA
 
-  - Implementar, en el **router** de **carts**, la ruta **/:cid/purchase**, la cual permitirá finalizar el proceso de compra de dicho carrito.
+  - [x] Implementar, en el **router** de **carts**, la ruta **/:cid/purchase**, la cual permitirá finalizar el proceso de compra de dicho carrito.
 
-    - La compra debe corroborar el **stock** del producto al momento de finalizarse.
-      - Si el producto tiene suficiente **stock** para la cantidad indicada en el producto del carrito, entonces restarlo del **stock** del producto y continuar.
-      - Si el producto no tiene suficiente **stock** para la cantidad indicada en el producto del carrito, entonces no agregar el producto al proceso de compra.
-    - Al final, utilizar el servicio de **tickets** para poder generar un **ticket** con los datos de la compra.
-    - En caso de existir una compra no completada, devolver el arreglo con los ids de los productos que no pudieron procesarse.
+    - [x] La compra debe corroborar el **stock** del producto al momento de finalizarse.
+      - [x] Si el producto tiene suficiente **stock** para la cantidad indicada en el producto del carrito, entonces restarlo del **stock** del producto y continuar.
+      - [x] Si el producto no tiene suficiente **stock** para la cantidad indicada en el producto del carrito, entonces no agregar el producto al proceso de compra.
+    - [x] Al final, utilizar el servicio de **tickets** para poder generar un **ticket** con los datos de la compra.
+    - [x] En caso de existir una compra no completada, devolver el arreglo con los ids de los productos que no pudieron procesarse.
 
-  - Una vez finalizada la compra, el carrito asociado al usuario que compró deberá contener sólo los productos que no pudieron comprarse. Es decir, se filtran los que sí se compraron y se quedan aquellos que no tenían disponibilidad.
+  - [x] Una vez finalizada la compra, el carrito asociado al usuario que compró deberá contener sólo los productos que no pudieron comprarse. Es decir, se filtran los que sí se compraron y se quedan aquellos que no tenían disponibilidad.
 
 - SEGURIDAD
 

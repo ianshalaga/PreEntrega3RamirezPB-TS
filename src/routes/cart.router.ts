@@ -14,6 +14,7 @@ cartsRouter.post(
   "/:cid" + productRoute + "/:pid",
   cartController.addProductCart
 );
+cartsRouter.post("/:cid/purchase", cartController.purchase);
 
 /** PUT ENPOINTS */
 cartsRouter.put("/:cid", cartController.updateCart);
