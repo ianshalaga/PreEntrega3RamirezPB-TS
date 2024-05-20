@@ -1,9 +1,6 @@
-/**
- * @param {number[]} ids - Array of integers ids.
- * @returns {number} - Max id.
- */
-export function generateId(ids: number[]): number {
-  let maxId = 0;
-  if (ids.length !== 0) maxId = Math.max(...ids);
-  return maxId;
+export function generateCode(prefix: string) {
+  return (
+    `${prefix.toUpperCase()}-` +
+    Math.random().toString(36).slice(2, 9).toUpperCase()
+  );
 }
