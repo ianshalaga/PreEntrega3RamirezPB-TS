@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { productRoute } from "../utils/routes";
 import cartController from "../controllers/cart.controller";
+import endpointAuth from "../middlewares/endpointAuth";
 
 const cartsRouter: Router = Router();
 
@@ -12,6 +13,7 @@ cartsRouter.get("/:cid", cartController.getCartById);
 cartsRouter.post("/", cartController.createCart);
 cartsRouter.post(
   "/:cid" + productRoute + "/:pid",
+  endpointAuth("user"),
   cartController.addProductCart
 );
 cartsRouter.post("/:cid/purchase", cartController.purchase);

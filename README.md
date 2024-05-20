@@ -38,11 +38,11 @@ Profesionalizar el servidor. Aplicar una arquitectura profesional para nuestro s
 
 - SEGURIDAD
 
-  - Los **endpoints** deben estar protegidos por roles.
-    - Realizar un **middleware** que pueda trabajar en conjunto con la estrategia **current** para hacer un sistema de autorización y delimitar el acceso a dichos **endpoints**:
-      - Sólo el administrador puede crear, actualizar y eliminar productos.
-      - Sólo el usuario puede enviar mensajes al chat.
-      - Sólo el usuario puede agregar productos a su carrito.
+  - [x] Los **endpoints** deben estar protegidos por roles.
+    - [x] Realizar un **middleware** que pueda trabajar en conjunto con la estrategia **current** (**session user & admin**) para hacer un sistema de autorización y delimitar el acceso a dichos **endpoints**:
+      - [x] Sólo el administrador puede crear, actualizar y eliminar productos.
+      - [x] Sólo el usuario puede enviar mensajes al chat.
+      - [x] Sólo el usuario puede agregar productos a su carrito.
   - Enviar emails y SMS.
 
 ## Entrega
