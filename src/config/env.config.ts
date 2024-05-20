@@ -28,4 +28,11 @@ export default {
   port: process.env.PORT,
   // DAO
   dao: dao,
+  // Google Mail
+  googleAppUsername: process.env.GOOGLE_APP_USERNAME,
+  googleAppPassword: process.env.GOOGLE_APP_PASSWORD,
+  // Twilio SMS
+  twilioAccountSid: process.env.TWILIO_ACCOUNT_SID,
+  twilioAuthToken: process.env.TWILIO_AUTH_TOKEN,
+  twilioPhoneNumber: process.env.TWILIO_PHONE_NUMBER,
 };

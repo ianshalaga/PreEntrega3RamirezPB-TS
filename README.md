@@ -43,7 +43,7 @@ Profesionalizar el servidor. Aplicar una arquitectura profesional para nuestro s
       - [x] Sólo el administrador puede crear, actualizar y eliminar productos.
       - [x] Sólo el usuario puede enviar mensajes al chat.
       - [x] Sólo el usuario puede agregar productos a su carrito.
-  - Enviar emails y SMS.
+  - [x] Enviar emails y SMS.
 
 ## Entrega
 
@@ -119,6 +119,14 @@ Enlace al repositorio de **GitHub** con el proyecto completo, sin la carpeta de 
 
 > - **cors** se utiliza para habilitar **Cross-Origin Resource Sharing** (**CORS**) en tu servidor. El **Cross-Origin Resource Sharing** (**CORS**) es un mecanismo de seguridad que permite a los servidores indicar a los navegadores qué orígenes (dominios, esquemas o puertos) están permitidos acceder a los recursos del servidor. Este mecanismo es fundamental para habilitar el intercambio de recursos entre diferentes dominios en aplicaciones web, manteniendo al mismo tiempo una política de seguridad robusta.
 
+- `npm i nodemailer`
+
+> - **nodemailer** es una biblioteca para **Node.js** que permite enviar correos electrónicos desde aplicaciones **Node.js**.
+
+- `npm i twilio`
+
+> - **Twilio** es una plataforma de comunicaciones en la nube que permite a los desarrolladores integrar capacidades de comunicación, como llamadas de voz, mensajes de texto (**SMS**), video y autenticación, en sus aplicaciones. **Twilio** proporciona **API** y servicios que facilitan la implementación de estas funcionalidades sin la necesidad de gestionar infraestructura de telecomunicaciones compleja.
+
 ## devDependencies
 
 - `npm i nodemon -D`
@@ -135,6 +143,7 @@ Enlace al repositorio de **GitHub** con el proyecto completo, sin la carpeta de 
 - `npm i @types/passport -D` (Definiciones de tipos de **TypeScript** para **passport**)
 - `npm i @types/passport-local -D` (Definiciones de tipos de **TypeScript** para **passport-local**)
 - `npm i @types/passport-github2 -D` (Definiciones de tipos de **TypeScript** para **passport-github2**)
+- `npm i @types/nodemailer -D` (Definiciones de tipos de **TypeScript** para **nodemailer**)
 
 > **TypeScript** dependencies.
 

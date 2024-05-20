@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import {
   cartService,
+  mailService,
   productService,
+  smsService,
   ticketService,
   userService,
 } from "../services/services";
@@ -144,6 +146,8 @@ class CartController {
       };
       await ticketService.createTicket(ticket);
       await cartService.updateCart(cid, noPurchased);
+      await mailService.googleMailService(user.email);
+      // await smsService.twilioSmsService("+330769537363");
       if (stockless.length > 0) {
         res.json(stockless);
       } else {
